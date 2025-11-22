@@ -10,5 +10,5 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Render fournit le port via la variable d'environnement $PORT
-EXPOSE 5000
+EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
