@@ -7,9 +7,8 @@ RUN mvn clean package -DskipTests
 # Étape 2 : exécuter le JAR avec un JRE 21 léger
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-# Ici tu copies ton vrai JAR
-COPY --from=build /app/target/api__projet_e-commerce-0.0.1-SNAPSHOT.jar api__projet_e-commerce.jar
+COPY --from=build /app/target/*.jar app.jar
 
-# Port dynamique (Render fournit $PORT)
+# Render fournit le port via la variable d'environnement $PORT
 EXPOSE 5000
-CMD ["java", "-jar", "api__projet_e-commerce.jar"]
+CMD ["java", "-jar", "app.jar"]
